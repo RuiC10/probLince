@@ -1,0 +1,6 @@
+var v:= 5; var p:= 10; var c:= 0; 
+
+while (c < 4) do {
+    while (!(p < 0 && v < 0)) do {v':=-9.8,p':=v for 0.01};
+    v=-0.5*v; c=c+1
+}

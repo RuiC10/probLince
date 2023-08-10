@@ -1,0 +1,13 @@
+{ 
+    "imageSize": [1200,1200]
+    , "fileName": "ProbThermostat.png"
+    , "title": "Probalistic Thermostat"
+    , "vars": [["temperature", [0,0,1]]]
+    , "axisTitle": ["time", "temperature"]
+    , "y_axisSize": 24 
+    , "x_axisSize": 24
+    , "y_labelSize": 24
+    , "x_labelSize": 24
+    , "titleSize": 30
+    , "legendSize": 22
+}

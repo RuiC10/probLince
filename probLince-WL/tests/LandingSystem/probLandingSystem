@@ -1,0 +1,19 @@
+var y := 10000; var v := -1000; var a:= 0; var g:= 10;
+
+while (y > 1000 || y == 1000) do {
+	if (v < -100 || v == -100) then a := (100 - g)
+              else a:= -g;
+    y' = v, v' = a for 1 + rand()*0.25
+};
+
+while (y > 25 || y == 25) do {
+	if (v < -20 || v == -20) then a := (20 - g)
+             else a:= -g;
+    y' = v, v' = a  for 1 + coin()*0.25
+};
+
+while (y > 1 || y == 1) do {
+	if (v < -1 || v == -1) then a := (15 - g)
+            else a:= -g;
+    y' = v, v' = a  for 0.01 + rand() * 0.1
+}

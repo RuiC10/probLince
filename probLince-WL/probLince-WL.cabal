@@ -1,0 +1,47 @@
+cabal-version:      2.4
+name:               probLince-WL
+version:            0.1.0.0
+
+executable probLince-WL
+    ghc-options:      -O2
+    main-is:          Main.hs
+    build-depends:    base ^>=4.16.4.0,
+                      monad-bayes >=1.1.0,
+                      probability >= 0.2.8,
+                      parsec >= 3.1.16.1,
+                      Chart >= 1.9.4,
+                      aeson >= 2.1.2.1,
+                      dlist >= 1.0,
+                      containers >= 0.6.7,
+                      mtl >= 2.2.2,
+                      transformers >= 0.5.6.2,
+                      colour >= 2.3.6,
+                      Chart-cairo >= 1.8,
+                      ad >= 4.5.4,
+                      bytestring >= 0.11.4.0,
+                      hmatrix-gsl >= 0.19.0.1,
+                      hmatrix >= 0.20.2,
+                      time == 1.11.1.1,
+                      MonadRandom >= 0.6
+    hs-source-dirs:   src
+    other-modules:    Util.Cp,
+                      Interpreter.PRE,
+                      Interpreter.TrjMonoid,
+                      Interpreter.RTE,
+                      Interpreter.Stats,
+                      Interpreter.DTermInterp,
+                      Interpreter.TermInterp,
+                      Interpreter.TestInterp,
+                      Interpreter.ProgramInterp,
+                      Interpreter.DiffSystemInterp,
+                      Interpreter.Interpreter,
+                      Interpreter.Exceptions,
+                      Parser.Parser,
+                      Parser.LanguageDef,
+                      Parser.TermParser,
+                      Parser.DTermParser,
+                      Parser.TestParser,
+                      Parser.DiffSystemParser,
+                      Visualization.Graphic,
+                      Visualization.Histogram
+    default-language: Haskell2010

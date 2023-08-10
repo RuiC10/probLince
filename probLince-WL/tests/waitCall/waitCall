@@ -1,0 +1,5 @@
+var x := 0;
+
+wait coin() do {
+    x := 2
+}

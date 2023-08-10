@@ -1,0 +1,7 @@
+var v:= 5; var p:= 10; var c:= 0;
+var factor := normal(0.5,0.02);
+
+while (c < 4) do {
+    while (!(p < 0 && v < 0)) do {v':=-9.8,p':=1*v for 0.01};
+    v=-factor*v; c=c+1
+}

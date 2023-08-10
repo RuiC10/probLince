@@ -1,0 +1,17 @@
+{ "imageSize": [1500,1500]
+, "fileName": "randomWalk2D-wait-500.png"
+, "title":"Random Walk 2D with wait call - 500 runs" 
+, "range": null
+, "showZeroBins": true
+, "numBins": 100
+, "x_axis_title": "Time"
+, "y_axis_title": "Frequency"
+, "var": "time"
+, "varColor": [0.4, 0.5, 0.6]
+, "y_axisSize": 24 
+, "x_axisSize": 24
+, "y_labelSize": 24
+, "x_labelSize": 24
+, "titleSize": 30
+, "legendSize": 22
+}

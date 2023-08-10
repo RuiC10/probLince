@@ -1,0 +1,12 @@
+var s := 1;
+var steps := 10;
+var x := coin();
+if (x == 0) then {x := -1} else {skip};
+var position := x;
+
+while (s < steps) do {
+    x := coin();
+    if (x == 0) then {x := -1} else {skip};
+    position := position + x;
+    s := s + 1
+}

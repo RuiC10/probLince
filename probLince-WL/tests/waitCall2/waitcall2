@@ -1,0 +1,5 @@
+var x := coin();
+
+while (!(x == 0)) do {
+    wait (x) do {x := coin()}
+}

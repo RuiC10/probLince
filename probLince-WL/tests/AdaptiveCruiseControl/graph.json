@@ -1,0 +1,12 @@
+{ "imageSize": [1200,1200]
+, "fileName": "AdapCruiseControl.png"
+, "title": "Adaptative Cruise Control - position"
+, "vars": [["p", [0,0,1]], ["pl", [1,0,0]]]
+, "axisTitle": ["time (s)", "position (m)"]
+, "y_axisSize": 24 
+, "x_axisSize": 24
+, "y_labelSize": 24
+, "x_labelSize": 24
+, "titleSize": 30
+, "legendSize": 22
+}

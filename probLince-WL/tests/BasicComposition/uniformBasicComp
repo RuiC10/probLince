@@ -1,0 +1,2 @@
+var v:=0; 
+v'=1 for rand()*2 + 1; v'=3 for rand()*2 + 1

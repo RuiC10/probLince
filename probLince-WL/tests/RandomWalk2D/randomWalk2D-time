@@ -1,0 +1,29 @@
+var s := 1;
+var x := coin();
+var y := coin();
+var u := (x-y);
+var v := (x+y-1);
+var u2 := u; var v2 := v;
+
+var steps := 100;
+var distance := 0;
+
+while (s < steps && distance < 3) do {
+    if (u < 0) then {u2 := -u} else {skip};
+    if (v < 0) then {v2 := -v} else {skip};
+    distance := u2 + v2;
+
+    wait (5) do {skip};
+    x := coin();
+    y := coin();
+    u := u + (x-y);
+    v := v + (x+y-1);
+    u2 := u;
+    v2 := v;
+
+    s := s + 1
+};
+
+if (u < 0) then {u2 := -u} else {skip};
+if (v < 0) then {v2 := -v} else {skip};
+distance := u2 + v2

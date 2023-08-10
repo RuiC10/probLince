@@ -1,0 +1,12 @@
+{ "imageSize": [1200,1200]
+, "fileName": "probTrigComputation.png"
+, "title": "Probabilistic Trignometric Computation"
+, "vars": [["p", [0,0,1]], ["v", [1,0,0]]]
+, "axisTitle": ["time", "value"]
+, "y_axisSize": 24 
+, "x_axisSize": 24
+, "y_labelSize": 24
+, "x_labelSize": 24
+, "titleSize": 30
+, "legendSize": 22
+}

@@ -1,0 +1,2 @@
+var v:=0; 
+v'=1 for normal(2.0,0.6); v'=3 for normal(2,0.2)

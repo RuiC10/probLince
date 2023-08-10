@@ -1,0 +1,8 @@
+var x:= -1; var v:= 0; var a:= 1;
+
+while true do {
+	if (x < 0 || x == 0) 
+    then {a:= 1} 
+    else {a:=-1};
+    x'=v,v'=a for rand() * 0.5 + 0.25
+}
