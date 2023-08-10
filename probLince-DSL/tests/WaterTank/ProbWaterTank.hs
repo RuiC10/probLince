@@ -21,12 +21,12 @@ condClose = do
 signalOpen :: PreM ()
 signalOpen = do
         dur <- readVar' "signalDuration" 
-        simDEvent (DiffSystem ["waterLevel"] (\t [level] -> [-2])) dur
+        preDEvent (DiffSystem ["waterLevel"] (\t [level] -> [-2])) dur
 
 signalClose :: PreM ()
 signalClose = do 
         dur <- readVar' "signalDuration" 
-        simDEvent (DiffSystem ["waterLevel"] (\t [level] -> [1])) dur
+        preDEvent (DiffSystem ["waterLevel"] (\t [level] -> [1])) dur
 
 activatePump :: DEvent
 activatePump = DiffSystem ["waterLevel"] (\t [level] -> [1])
@@ -35,10 +35,10 @@ deactivatePump :: DEvent
 deactivatePump = DiffSystem ["waterLevel"] (\t [level] -> [-2]) 
 
 fillTank :: PreM ()
-fillTank = sequential' (untilC' (simDEvent activatePump 0.1) condClose) signalClose
+fillTank = sequential' (untilC' (preDEvent activatePump 0.1) condClose) signalClose
 
 emptyTank :: PreM ()
-emptyTank = sequential' (untilC' (simDEvent deactivatePump 0.1) condOpen) signalOpen
+emptyTank = sequential' (untilC' (preDEvent deactivatePump 0.1) condOpen) signalOpen
 
 waterTank :: PreM ()
 waterTank = sequential' initial (infinite' (sequential' fillTank emptyTank))

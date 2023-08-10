@@ -28,10 +28,10 @@ deactivatePump :: DEvent
 deactivatePump = DiffSystem ["waterLevel"] (\t [level] -> [-2]) 
 
 fillTank :: PreM ()
-fillTank = sequential' (untilC' (simDEvent activatePump 0.1) condClose) (simDEvent signalClose 2)
+fillTank = sequential' (untilC' (preDEvent activatePump 0.1) condClose) (preDEvent signalClose 2)
 
 emptyTank :: PreM ()
-emptyTank = sequential' (untilC' (simDEvent deactivatePump 0.1) condOpen) (simDEvent signalOpen 2)
+emptyTank = sequential' (untilC' (preDEvent deactivatePump 0.1) condOpen) (preDEvent signalOpen 2)
 
 waterTank :: PreM ()
 waterTank = sequential' initial (infinite' (sequential' fillTank emptyTank))

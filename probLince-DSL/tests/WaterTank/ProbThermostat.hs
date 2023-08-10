@@ -36,10 +36,10 @@ turnOff :: DEvent
 turnOff = DiffSystem ["temperature"] (\t [temperature] -> [negate $ 0.1 * temperature])
 
 heatUp :: PreM ()
-heatUp = untilC' (simDEvent turnOn 0.1) condOff
+heatUp = untilC' (preDEvent turnOn 0.1) condOff
 
 coolDown :: PreM ()
-coolDown = untilC' (simDEvent turnOff 0.1) condOn
+coolDown = untilC' (preDEvent turnOff 0.1) condOn
 
 thermostat :: PreM ()
 thermostat = sequential' initial (infinite' (sequential' coolDown heatUp))

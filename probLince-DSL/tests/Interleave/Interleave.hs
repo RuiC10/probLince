@@ -19,7 +19,7 @@ event2 :: DEvent
 event2 = DiffSystem ["p1", "v1"] (\t [p,v] -> [v,-15])
 
 trajectory :: PreM ()
-trajectory = simDEvent (DiffSystem ["p0", "v0", "p1", "v1"] (\t [p_0, v_0, p_1, v_1] -> [v_0, -3, -v_1, 4])) 5
+trajectory = preDEvent (DiffSystem ["p0", "v0", "p1", "v1"] (\t [p_0, v_0, p_1, v_1] -> [v_0, -3, -v_1, 4])) 5
 
 itl :: PreM ()
 itl = sequential' initial (interleave' event1 event2 0.01 condTrj trajectory)

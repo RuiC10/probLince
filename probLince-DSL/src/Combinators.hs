@@ -42,7 +42,7 @@ conditional :: RteM Bool -> RteM () -> RteM () -> RteM ()
 conditional c ex1 ex2 = c >>= (\b -> if b then ex1 else ex2)
 
 after :: Double -> RteM () -> RteM ()
-after t e = sequential (execDEvent Wait t) e
+after t e = sequential (rteDEvent Wait t) e
 
 repeatAfter :: Int -> Double -> RteM () -> RteM () 
 repeatAfter n t e = after t (repeatH e n)
@@ -58,7 +58,7 @@ conditional' :: PreM Bool -> PreM () -> PreM () -> PreM ()
 conditional' c ex1 ex2 = c >>= (\b -> if b then ex1 else ex2)
 
 after' :: Double -> PreM () -> PreM ()
-after' t e = sequential' (simDEvent Wait t) e
+after' t e = sequential' (preDEvent Wait t) e
 
 repeatAfter' :: Int -> Double -> PreM () -> PreM ()
 repeatAfter' n t e = after' t (repeatH' e n)
@@ -66,7 +66,7 @@ repeatAfter' n t e = after' t (repeatH' e n)
 -- Event combinators 
 
 sequentialEvent :: DEvent -> DEvent -> Double -> RteM ()
-sequentialEvent e1 e2 dur = sequential (execDEvent e1 dur) (execDEvent e2 dur)
+sequentialEvent e1 e2 dur = sequential (rteDEvent e1 dur) (rteDEvent e2 dur)
 
 interleave :: DEvent -> DEvent -> Double -> RteM Bool -> RteM () -> RteM ()
 interleave e1 e2 dur c e3 = do
@@ -74,11 +74,11 @@ interleave e1 e2 dur c e3 = do
                     if b then 
                         e3
                     else
-                        sequential (sequential (execDEvent e2 dur) (execDEvent e1 dur)) (interleave e1 e2 dur c e3)
+                        sequential (sequential (rteDEvent e2 dur) (rteDEvent e1 dur)) (interleave e1 e2 dur c e3)
                     
 
 sequentialEvent' :: DEvent -> DEvent -> Double -> PreM ()
-sequentialEvent' e1 e2 dur = sequential' (simDEvent e1 dur) (simDEvent e2 dur)
+sequentialEvent' e1 e2 dur = sequential' (preDEvent e1 dur) (preDEvent e2 dur)
 
 interleave' :: DEvent -> DEvent -> Double -> PreM Bool -> PreM () -> PreM ()
 interleave' e1 e2 dur c e3 = do
@@ -86,4 +86,4 @@ interleave' e1 e2 dur c e3 = do
                     if b then 
                         e3
                     else
-                        sequential' (sequential' (simDEvent e1 dur) (simDEvent e2 dur)) (interleave' e1 e2 dur c e3)
+                        sequential' (sequential' (preDEvent e1 dur) (preDEvent e2 dur)) (interleave' e1 e2 dur c e3)
