@@ -17,9 +17,9 @@ import TrjMonoid
 import Control.Monad.Bayes.Sampler.Lazy (sampler, independent)
 import qualified Control.Monad.Bayes.Class as B
 
-type Meas = Weighted Sampler 
+type Prob = Weighted Sampler 
 
-type PreM = StateT ((Int, Bool), Memory) (WriterT Trj (ExceptT RunException Meas))
+type PreM = StateT ((Int, Bool), Memory) (WriterT Trj (ExceptT RunException Prob))
 
 readMemory :: PreM Memory
 readMemory = p2 <$> get
@@ -100,5 +100,5 @@ normal' = do
         v <- B.normal 0.0 1.0 
         return v
 
-runPreM :: Double -> PreM a -> Meas (Either RunException (Memory, Trj))
+runPreM :: Double -> PreM a -> Prob (Either RunException (Memory, Trj))
 runPreM time m = fmap (id -|- (p2 >< id)) . runExceptT . runWriterT $ execStateT m ((floor $ time * 1000000, True), Map.empty)

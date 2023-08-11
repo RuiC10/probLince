@@ -4,7 +4,7 @@ import ProbLinceDSL
 import Cp
 
 initial :: PreM ()
-initial = addVar' "p0" 100 >> addVar' "p1" 200 >> addVar' "v0" 4 >> addVar' "v1" 5
+initial = addVar' "p0" 800 >> addVar' "p1" 1000 >> addVar' "v0" 4 >> addVar' "v1" 5
 
 condTrj :: PreM Bool
 condTrj = do

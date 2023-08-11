@@ -22,7 +22,7 @@ module ProbLinceDSL
       GraphicConfig,
       RteM,
       PreM,
-      Meas,
+      Prob,
       untilC,
       repeatH,
       repeatH',
