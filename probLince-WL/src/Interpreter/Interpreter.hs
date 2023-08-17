@@ -24,13 +24,13 @@ runExecs inst n time r = let m = programRTE inst r
 
 run :: String -> Int -> Double -> IO (Either String [(Memory, Trj)])
 run inputFile n time = do
-                    infCoinList <- evalRandIO $ getRandomRs (0,1)
+                    infCoinList <- evalRandIO $ getRandomRs (0,1) :: IO [Int]
                     infRandList <- evalRandIO $ getRandomRs (0.0,1.0)
                     infNormalList <- sampler . independent $ B.normal 0.0 1.0
                     parsedProg <- runLangParser inputFile
                     case parsedProg of 
                         Left e -> return . i1 . show $ e
-                        Right inst -> sequence <$> runExecs inst n time (ProbElems {coin = infCoinList, rand = infRandList, normal = infNormalList}, Map.empty)
+                        Right inst -> sequence <$> runExecs inst n time (ProbElems {coin = map fromIntegral infCoinList, rand = infRandList, normal = infNormalList}, Map.empty)
 
 sim :: String -> Double -> IO (Prob (Either String (Memory, Trj)))
 sim inputFile time = do

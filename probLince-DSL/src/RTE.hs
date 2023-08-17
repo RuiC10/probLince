@@ -10,6 +10,7 @@ import Data.Time.Clock
 import Data.Monoid
 import Data.Map (Map)
 import qualified Data.Map as Map
+import Control.Monad.Random.Lazy
 import TrjMonoid
 import Numeric.GSL.ODE (odeSolve)
 import qualified Numeric.LinearAlgebra as LA
@@ -117,7 +118,7 @@ check name f = readVar name >>= return . f
 
 runRteM :: RteM a -> Double -> IO (Either RunException (Resources, Trj))
 runRteM m time = do 
-                infCoinList <- sampler . independent . B.uniformD $ [0,1]
-                infRandList <- sampler . independent $ B.uniform 0.0 1.0
+                infCoinList <- evalRandIO $ getRandomRs (0,1) :: IO [Int]
+                infRandList <- evalRandIO $ getRandomRs (0.0,1.0)
                 infNormalList <- sampler . independent $ B.normal 0.0 1.0
-                fmap (id -|- (p2 >< id)) . runExceptT . runWriterT $ execStateT m ((floor $ time * 1000000, True), (ProbElems {coinList = infCoinList, randList = infRandList, normalList = infNormalList}, Map.empty))
+                fmap (id -|- (p2 >< id)) . runExceptT . runWriterT $ execStateT m ((floor $ time * 1000000, True), (ProbElems {coinList = map fromIntegral infCoinList, randList = infRandList, normalList = infNormalList}, Map.empty))

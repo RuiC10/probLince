@@ -63,7 +63,7 @@ waitCallRTE dur (r,m) = do
         put (time - dur, True)
 
     b <- lift . lift . lift $ getCurrentTime
-    lift . tell $ toTrj ((floor $ diffUTCTime b a) * 1000000) (const m)
+    lift . tell $ toTrj ((floor $ diffUTCTime b a * 1000000.0)) (const m)
     return (r,m)
 
 evolveRTE :: Int -> Resources -> (Double -> [Double] -> [Double]) -> RteM Resources

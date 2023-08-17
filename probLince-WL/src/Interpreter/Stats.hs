@@ -24,7 +24,7 @@ sampleVar n dist = (id -|- Map.unionsWith (++) . Prelude.map (Map.map (\x -> [x]
                 <$> mh 1.0 dist
 
 sampleTime :: Int -> Prob (Either String (Memory, Trj)) -> IO (Either String [Double])
-sampleTime n dist = (id -|- Prelude.map ((/1000000) . fromIntegral . getTime . p2))
+sampleTime n dist = (id -|- Prelude.map ((/1000000.0) . fromIntegral . getTime . p2))
                   . sequence 
                   . Prelude.map p1
                   . take n
